@@ -8,4 +8,10 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :transactions
+  has_many :api_tokens
+  has_one :valid_api_token, -> { valid }, class_name: 'ApiToken'
+
+  def api_token
+    @api_token ||= valid_api_token || api_tokens.create!
+  end
 end

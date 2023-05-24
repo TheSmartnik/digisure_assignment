@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe TransactionsController do
+  include_examples "authentication header"
+
   let(:user) { create :user }
 
   describe '#index' do

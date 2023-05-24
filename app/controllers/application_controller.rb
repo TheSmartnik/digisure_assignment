@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::API
   def current_user
-    User.first
+    token = ApiToken.find_by(token: request.headers["X-API-TOKEN"])
+    return api_error("User not found") if token.blank?
+
+    token.user
   end
 
   def api_error(object)

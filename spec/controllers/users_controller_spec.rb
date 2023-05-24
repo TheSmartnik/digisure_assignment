@@ -48,6 +48,8 @@ RSpec.describe UsersController do
   end
 
   describe '#show' do
+    include_examples "authentication header"
+
     let(:user) { create :user }
 
     before { create_list :transaction, 2, user: user }
