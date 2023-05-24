@@ -11,8 +11,9 @@ class ApplicationController < ActionController::API
     token.user
   end
 
-  def not_found_error(error)
-    render json: { message: "Couldn't find #{error.model}"}, status: 404
+  def not_found_error(object)
+    model_name = object.respond_to?(:model) ? object.model : object.model_name
+    render json: { message: "Couldn't find #{model_name}"}, status: 404
   end
 
   def parameter_missing_error(error)

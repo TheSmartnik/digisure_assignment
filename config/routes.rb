@@ -3,9 +3,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :users, only: %i[create] do
-    get :show, on: :collection
-  end
-
+  resource :user, only: %i[show create]
+  resource :auth, only: :create, controller: :auth
   resources :transactions
 end

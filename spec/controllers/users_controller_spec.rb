@@ -19,7 +19,7 @@ RSpec.describe UsersController do
 
       json = JSON.parse(response.body)
       expect(json['email']).to be_present
-      expect(json['auth_token']).to be_present
+      expect(json['api_token']).to be_present
     end
 
     context 'when no params are passed' do
@@ -73,7 +73,7 @@ RSpec.describe UsersController do
       json = JSON.parse(response.body)
       expect(json['email']).to be_present
       expect(json['balance']).to eq(200)
-      expect(json['auth_token']).to be_blank
+      expect(json['api_token']).to be_blank
     end
   end
 end

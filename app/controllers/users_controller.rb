@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     user = User.create(user_attributes)
 
     if user.persisted?
-      render json: UserBlueprint.render(user, view: :with_auth_token)
+      render json: UserBlueprint.render(user, view: :with_api_token)
     else
       api_error(user.errors)
     end
