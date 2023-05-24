@@ -22,6 +22,18 @@ RSpec.describe UsersController do
       expect(json['auth_token']).to be_present
     end
 
+    context 'when no params are passed' do
+      let(:attributes) { {} }
+
+      it 'raises error' do
+        create_request
+        expect(response.status).to eq(422)
+
+        json = JSON.parse(response.body)
+        expect(json['error_message']).to eq("param is missing or the value is empty: user")
+      end
+    end
+
     context 'when email is invalid' do
       let(:email) { 'invalid@emailcom' }
 
