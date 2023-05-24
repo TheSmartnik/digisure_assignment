@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
   def index
-    transactions = current_user.transactions
+    transactions = current_user.transactions.page(params[:page])
 
     render json: TransactionBlueprint.render(transactions)
   end

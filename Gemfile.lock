@@ -119,6 +119,10 @@ GEM
     i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     interactor (3.1.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -220,6 +224,7 @@ DEPENDENCIES
   factory_bot
   factory_bot_rails
   interactor
+  kaminari-activerecord
   pg (~> 1.1)
   pry
   puma (~> 5.0)

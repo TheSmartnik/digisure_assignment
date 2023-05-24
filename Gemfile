@@ -30,6 +30,7 @@ gem "bootsnap", require: false
 gem "blueprinter"
 gem "interactor"
 gem "dry-validation"
+gem 'kaminari-activerecord'
 
 group :development, :test do
   gem "factory_bot"
