@@ -15,8 +15,8 @@ class Transactions::Transfer
     Transaction.transaction(isolation: :serializable) do
       context.fail!(error_message: "Insufficient balance") if user.balance < form[:quantity]
 
-      user.transactions.create!(operation_type: Transaction::TRANSFER_SENT, quantity: form[:quantity])
-      recipient.transactions.create!(operation_type: Transaction::TRANSFER_RECEIVED, quantity: form[:quantity])
+      user.transactions.create!(operation_type: Transaction::TRANSFER_SENT, quantity: form[:quantity], data: { transfer_to: recipient.email })
+      recipient.transactions.create!(operation_type: Transaction::TRANSFER_RECEIVED, quantity: form[:quantity], data: { transfer_from: user.email })
     end
   rescue ActiveRecord::ActiveRecordError => e
     context.fail!(error_message: e)
