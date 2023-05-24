@@ -1,5 +1,5 @@
 class UserBlueprint < Blueprinter::Base
-  fields :email
+  fields :email, :balance
 
   view :with_auth_token do
     field :auth_token do

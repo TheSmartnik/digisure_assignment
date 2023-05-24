@@ -9,6 +9,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    render json: UserBlueprint.render(current_user)
+  end
+
   private
 
   def user_attributes

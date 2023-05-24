@@ -46,4 +46,20 @@ RSpec.describe UsersController do
       end
     end
   end
+
+  describe '#show' do
+    let(:user) { create :user }
+
+    before { create_list :transaction, 2, user: user }
+
+    specify do
+      get :show
+      expect(response).to be_successful
+
+      json = JSON.parse(response.body)
+      expect(json['email']).to be_present
+      expect(json['balance']).to eq(200)
+      expect(json['auth_token']).to be_blank
+    end
+  end
 end
