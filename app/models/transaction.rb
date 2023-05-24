@@ -22,7 +22,7 @@ class Transaction < ApplicationRecord
     TRANSFER_RECEIVED => 2,
   }
 
-  validates :quantity, numericality: { only_integer: true, greater_than: 0 }
+  validates :quantity, numericality: { greater_than: 0 }
 
   scope :incoming, -> { where(operation_type: INCOMING_OPERATIONS) }
   scope :outgoing, -> { where(operation_type: OUTGOING_OPERATIONS) }

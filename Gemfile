@@ -28,6 +28,8 @@ gem "bootsnap", require: false
 # gem "rack-cors"
 
 gem "blueprinter"
+gem "interactor"
+gem "dry-validation"
 
 group :development, :test do
   gem "factory_bot"

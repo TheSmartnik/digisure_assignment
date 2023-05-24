@@ -19,4 +19,27 @@ RSpec.describe TransactionsController do
       expect(json.count).to eq(3)
     end
   end
+
+  describe '#create' do
+    let!(:user) { create :user }
+
+    context 'when params are valid' do
+      specify do
+        post :create, params: { transaction: { operation_type: 'deposit', quantity: 1000 }}
+        expect(response).to be_successful
+
+        expect(user.reload.balance).to eq(1000)
+      end
+    end
+
+    context 'when params are invalid' do
+      specify do
+        post :create, params: { transaction: { operation_type: 'deposit', amount: 1000 }}
+        expect(response.status).to eq(422)
+
+        json = JSON.parse(response.body)
+        expect(json['error_message']).to eq('quantity is missing')
+      end
+    end
+  end
 end
